@@ -25,7 +25,7 @@ export class UbicacionProvider {
     }
 
     this.usuario = this.db.object(`usuarios/${this.userProv.clave}`);
-    console.log(this.usuario);
+    console.log(JSON.stringify(this.usuario));
 
     this.watch = this.geolocation.watchPosition()
       .subscribe((data) => {
