@@ -15,18 +15,22 @@ export class UbicacionProvider {
     private userProv: UsuarioProvider,
     private db: AngularFireDatabase) {
 
+
+  }
+
+  iniciar_localizacion() {
+
     if (!this.userProv.clave) {
       return;
     }
 
     this.usuario = this.db.object(`usuarios/${this.userProv.clave}`);
-  }
-
-  iniciar_localizacion() {
+    console.log(this.usuario);
 
     this.watch = this.geolocation.watchPosition()
       .subscribe((data) => {
-        if (this.userProv.clave && data.coords) {
+        if (data.coords) {
+
           this.guardar_coordenadas(
             data.coords.longitude, data.coords.latitude)
             .then(() => console.log('Coordenadas guardadas correctamente'))
